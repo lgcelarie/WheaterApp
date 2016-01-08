@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_clouds.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_clouds.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\item_focused.9.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\item_focused.9.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_rain.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_rain.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_light_clouds.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_light_clouds.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\ic_launcher.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_snow.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_snow.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_storm.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_storm.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_light_rain.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_light_rain.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\item_pressed.9.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\item_pressed.9.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_clear.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_clear.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4\\art_fog.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable-xhdpi\\art_fog.png"
+    }
+]

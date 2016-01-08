@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\button_selector.xml",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable\\button_selector.xml"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_download.png",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable\\ic_download.png"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\edit_text_border.xml",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\drawable\\edit_text_border.xml"
+    }
+]

@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\layout\\download_weather_activity.xml",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\layout\\download_weather_activity.xml"
+    },
+    {
+        "merged": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\build\\intermediates\\res\\merged\\debug\\layout\\display_weather_activity.xml",
+        "source": "D:\\Android\\workspace\\POSA-15\\assignments\\assignment3\\app\\src\\main\\res\\layout\\display_weather_activity.xml"
+    }
+]
