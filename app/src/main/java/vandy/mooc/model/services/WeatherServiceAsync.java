@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import vandy.mooc.common.Utils;
 import vandy.mooc.model.aidl.WeatherData;
 import vandy.mooc.model.aidl.WeatherRequest;
 import vandy.mooc.model.aidl.WeatherResults;
+import vandy.mooc.utils.WeatherUtils;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
@@ -48,6 +51,8 @@ public class WeatherServiceAsync
      */
     public static Intent makeIntent(Context context) {
         // TODO -- you fill in here.
+        Intent returnIntent = new Intent(context,WeatherServiceAsync.class);
+        return returnIntent;
     }
     
     /**
@@ -109,6 +114,59 @@ public class WeatherServiceAsync
             public void getCurrentWeather(final String location,
                                           final WeatherResults callback) {
                 // TODO -- you fill in here.
+                final Runnable getCurrentWeatherRunnable = new Runnable() {
+                    public void run() {
+                        try {
+                            // Call the Acronym Web service to get the
+                            // list of possible expansions of the
+                            // designated location.
+                            final List<WeatherData> acronymExpansions =
+                                    getWeatherResults(location);
+                                    //getAcronymExpansions(location);
+
+                            if (acronymExpansions != null) {
+                                Log.d(TAG, ""
+                                        + acronymExpansions.size()
+                                        + " result(s) for Location: "
+                                        + location);
+                                // Invoke a one-way callback to send
+                                // list of Acronym expansions back to
+                                // the client.
+                                callback.sendResults(acronymExpansions);
+                            } else {
+                                Log.d(TAG,
+                                        "No weather for \""
+                                                + location
+                                                + "\" found");
+
+                                // Invoke a one-way callback to send
+                                // an error message back to the
+                                // client.es
+                                callback.sendError("No weather for \""
+                                        + location
+                                        + "\" found");
+                            }
+                        } catch (Exception e) {
+                            Log.d(TAG,
+                                    "getCurrentAcronym() "
+                                            + e);
+                        }
+                    }
+
+                };
+
+                // Determine if we're on the UI thread or not.
+                if (Utils.runningOnUiThread())
+                    // Execute getCurrentAcronymRunnable in a separate
+                    // thread if this service has been configured to
+                    // be collocated with an Activity.
+                    mExecutorService.execute(getCurrentWeatherRunnable);
+                else
+                    // Run the getCurrentAcronymRunnable in the pool
+                    // thread if this service has been configured to
+                    // run in its own process.
+                    getCurrentWeatherRunnable.run();
             }
         };
+
 }

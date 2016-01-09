@@ -59,6 +59,7 @@ public class WeatherServiceBase
         super.onCreate();
 
         // TODO -- you fill in here.
+        GenericSingleton.instance(WeatherCache.class).incrementRefCount();
     }
 
     /**
@@ -70,6 +71,8 @@ public class WeatherServiceBase
         super.onDestroy();
 
         // TODO -- you fill in here.
+        if (GenericSingleton.instance(WeatherCache.class).decrementRefCount() == 0)
+            GenericSingleton.remove(WeatherCache.class);
     }
 
     /**
@@ -84,6 +87,35 @@ public class WeatherServiceBase
               + location);
 
         // TODO -- you fill in here.
+        // Try to get the results from the AcronymCache.
+        List<WeatherData> results =
+                GenericSingleton.instance(WeatherCache.class).get(location);
+
+        if (results != null) {
+            Log.d(TAG,
+                    "Getting results from the cache for "
+                            + location);
+
+            // Return the results from the cache.
+            return results;
+        } else {
+            Log.d(TAG,
+                    "Getting results from the Acronym Service for "
+                            + location);
+
+            // The results weren't already in the cache or were
+            // "stale", so obtain them from the Acronym Service.
+            results = getResultsFromWeatherService(location);
+
+            if (results != null)
+                // Store the results into the cache for up to
+                // DEFAULT_CACHE_TIMEOUT seconds based on the location
+                // and return the results.
+                GenericSingleton.instance(WeatherCache.class).put
+                        (location,
+                                results,
+                                DEFAULT_CACHE_TIMEOUT);
+            return results;
         }
     }
 
