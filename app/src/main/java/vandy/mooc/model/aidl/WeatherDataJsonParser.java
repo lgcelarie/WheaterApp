@@ -32,6 +32,14 @@ public class WeatherDataJsonParser {
         throws IOException {
 
         // TODO -- you fill in here.
+        // Create a JsonReader for the inputStream.
+        try (JsonReader reader =
+                     new JsonReader(new InputStreamReader(inputStream,
+                             "UTF-8"))) {
+            // Log.d(TAG, "Parsing the results returned as an array");
+
+            // Handle the array returned from the Acronym Service.
+            return parseJsonWeatherDataArray(reader);
         }
     }
 
@@ -42,6 +50,15 @@ public class WeatherDataJsonParser {
     public List<WeatherData> parseJsonWeatherDataArray(JsonReader reader)
         throws IOException {
         // TODO -- you fill in here.
+        List<WeatherData> weatherDatas = null;
+        reader.beginObject();
+
+        while (reader.hasNext()) {
+            weatherDatas.add(parseJsonWeatherData(reader));
+        }
+
+        reader.endObject();
+        return weatherDatas;
     }
 
     /**
@@ -51,6 +68,47 @@ public class WeatherDataJsonParser {
         throws IOException {
 
         // TODO -- you fill in here.
+        final WeatherData theWeather = new WeatherData();
+        String name = reader.nextName();
+        switch (name)
+        {
+            case WeatherData.cod_JSON:
+                theWeather.setCod(reader.nextLong());
+                break;
+
+            case WeatherData.message_JSON:
+                theWeather.setMessage(reader.nextString());
+                break;
+
+            case WeatherData.name_JSON:
+                theWeather.setName(reader.nextString());
+                break;
+
+            case WeatherData.dt_JSON:
+                theWeather.setDate(reader.nextLong());
+                break;
+
+            case WeatherData.sys_JSON:
+                if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                    theWeather.setSys(parseSys(reader));
+                break;
+
+            case WeatherData.main_JSON:
+                if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                    theWeather.setMain(parseMain(reader));
+                break;
+
+            case WeatherData.wind_JSON:
+                if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                    theWeather.setWind(parseWind(reader));
+                break;
+
+            default:
+                reader.skipValue();
+                break;
+        }
+
+        return theWeather;
     }
     
     /**
@@ -58,6 +116,13 @@ public class WeatherDataJsonParser {
      */
     public List<Weather> parseWeathers(JsonReader reader) throws IOException {
         // TODO -- you fill in here.
+        List<Weather> weatherList = null;
+        while(reader.hasNext())
+        {
+           weatherList.add(parseWeather(reader));
+        }
+        return weatherList;
+
     }
 
     /**
@@ -65,6 +130,34 @@ public class WeatherDataJsonParser {
      */
     public Weather parseWeather(JsonReader reader) throws IOException {
         // TODO -- you fill in here.
+        String name = reader.nextName();
+        Weather theWeather = new Weather();
+        outerloop:
+        while(reader.hasNext())
+        {
+            switch (name)
+            {
+                case Weather.id_JSON:
+                    theWeather.setId(reader.nextLong());
+                    break;
+                case Weather.main_JSON:
+                    theWeather.setMain(reader.nextString());
+                    break;
+                case Weather.description_JSON:
+                    theWeather.setDescription(reader.nextString());
+                    break;
+                case Weather.icon_JSON:
+                    theWeather.setIcon(reader.nextString());
+                    break;
+                default:
+                    if(reader.peek() == JsonToken.END_ARRAY)
+                        break outerloop;
+                    else
+                        reader.skipValue();
+                    break;
+            }
+        }
+
     }
 
     /**
