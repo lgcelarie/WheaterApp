@@ -68,7 +68,8 @@ public class WeatherDataJsonParser {
         throws IOException {
 
         // TODO -- you fill in here.
-        final WeatherData theWeather = new WeatherData();
+
+        WeatherData theWeather = new WeatherData();
         String name = reader.nextName();
         switch (name)
         {
@@ -102,7 +103,10 @@ public class WeatherDataJsonParser {
                 if (reader.peek() == JsonToken.BEGIN_ARRAY)
                     theWeather.setWind(parseWind(reader));
                 break;
-
+            case WeatherData.weather_JSON:
+                if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                    theWeather.setWeathers(parseWeathers(reader));
+                break;
             default:
                 reader.skipValue();
                 break;
@@ -117,10 +121,14 @@ public class WeatherDataJsonParser {
     public List<Weather> parseWeathers(JsonReader reader) throws IOException {
         // TODO -- you fill in here.
         List<Weather> weatherList = null;
+
+        reader.beginArray();
+
         while(reader.hasNext())
         {
            weatherList.add(parseWeather(reader));
         }
+        reader.endArray();
         return weatherList;
 
     }
@@ -130,11 +138,13 @@ public class WeatherDataJsonParser {
      */
     public Weather parseWeather(JsonReader reader) throws IOException {
         // TODO -- you fill in here.
-        String name = reader.nextName();
+        reader.beginObject();
+
         Weather theWeather = new Weather();
         outerloop:
         while(reader.hasNext())
         {
+            String name = reader.nextName();
             switch (name)
             {
                 case Weather.id_JSON:
@@ -150,14 +160,12 @@ public class WeatherDataJsonParser {
                     theWeather.setIcon(reader.nextString());
                     break;
                 default:
-                    if(reader.peek() == JsonToken.END_ARRAY)
-                        break outerloop;
-                    else
-                        reader.skipValue();
+                    reader.skipValue();
                     break;
             }
         }
-
+        reader.endObject();
+        return theWeather;
     }
 
     /**
@@ -166,6 +174,31 @@ public class WeatherDataJsonParser {
     public Main parseMain(JsonReader reader) 
         throws IOException {
         // TODO -- you fill in here.
+        reader.beginObject();
+        Main theMain = new Main();
+
+        while(reader.hasNext())
+        {
+            String name = reader.nextName();
+            switch (name)
+            {
+                case Main.temp_JSON:
+                    theMain.setTemp(reader.nextDouble());
+                    break;
+                case Main.pressure_JSON:
+                    theMain.setPressure(reader.nextDouble());
+                    break;
+                case Main.humidity_JSON:
+                    theMain.setHumidity(reader.nextLong());
+                    break;
+                default:
+                    reader.skipValue();
+                    break;
+            }
+        }
+
+        reader.endObject();
+        return theMain;
     }
 
     /**
@@ -173,6 +206,29 @@ public class WeatherDataJsonParser {
      */
     public Wind parseWind(JsonReader reader) throws IOException {
         // TODO -- you fill in here.
+
+        reader.beginObject();
+        Wind theWind = new Wind();
+
+        while(reader.hasNext())
+        {
+            String name = reader.nextName();
+            switch (name)
+            {
+                case Wind.speed_JSON:
+                    theWind.setSpeed(reader.nextDouble());
+                    break;
+                case Wind.deg_JSON:
+                    theWind.setDeg(reader.nextDouble());
+                    break;
+                default:
+                    reader.skipValue();
+                    break;
+            }
+        }
+
+        reader.endObject();
+        return theWind;
     }
 
     /**
@@ -181,5 +237,31 @@ public class WeatherDataJsonParser {
     public Sys parseSys(JsonReader reader)
         throws IOException {
         // TODO -- you fill in here.
+
+        reader.beginObject();
+        Sys theSys = new Sys();
+
+        while(reader.hasNext())
+        {
+            String name = reader.nextName();
+            switch (name)
+            {
+                case Sys.sunrise_JSON:
+                    theSys.setSunrise(reader.nextLong());
+                    break;
+                case Sys.sunset_JSON:
+                    theSys.setSunset(reader.nextLong());
+                    break;
+                case Sys.country_JSON:
+                    theSys.setCountry(reader.nextString());
+                    break;
+                default:
+                    reader.skipValue();
+                    break;
+            }
+        }
+
+        reader.endObject();
+        return theSys;
     }
 }
