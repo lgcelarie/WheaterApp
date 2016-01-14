@@ -37,6 +37,8 @@ public class WeatherServiceSync
      */
     public static Intent makeIntent(Context context) {
         // TODO -- you fill in here.
+        Intent returnIntent = new Intent(context,WeatherServiceSync.class);
+        return returnIntent;
     }
 
     /**

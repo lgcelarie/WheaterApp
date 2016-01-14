@@ -70,46 +70,47 @@ public class WeatherDataJsonParser {
         // TODO -- you fill in here.
 
         WeatherData theWeather = new WeatherData();
-        String name = reader.nextName();
-        switch (name)
-        {
-            case WeatherData.cod_JSON:
-                theWeather.setCod(reader.nextLong());
-                break;
+        while(reader.hasNext()) {
+            String name = reader.nextName();
+            switch (name) {
+                case WeatherData.cod_JSON:
+                    theWeather.setCod(reader.nextLong());
+                    break;
 
-            case WeatherData.message_JSON:
-                theWeather.setMessage(reader.nextString());
-                break;
+                case WeatherData.message_JSON:
+                    theWeather.setMessage(reader.nextString());
+                    break;
 
-            case WeatherData.name_JSON:
-                theWeather.setName(reader.nextString());
-                break;
+                case WeatherData.name_JSON:
+                    theWeather.setName(reader.nextString());
+                    break;
 
-            case WeatherData.dt_JSON:
-                theWeather.setDate(reader.nextLong());
-                break;
+                case WeatherData.dt_JSON:
+                    theWeather.setDate(reader.nextLong());
+                    break;
 
-            case WeatherData.sys_JSON:
-                if (reader.peek() == JsonToken.BEGIN_ARRAY)
-                    theWeather.setSys(parseSys(reader));
-                break;
+                case WeatherData.sys_JSON:
+                    if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                        theWeather.setSys(parseSys(reader));
+                    break;
 
-            case WeatherData.main_JSON:
-                if (reader.peek() == JsonToken.BEGIN_ARRAY)
-                    theWeather.setMain(parseMain(reader));
-                break;
+                case WeatherData.main_JSON:
+                    if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                        theWeather.setMain(parseMain(reader));
+                    break;
 
-            case WeatherData.wind_JSON:
-                if (reader.peek() == JsonToken.BEGIN_ARRAY)
-                    theWeather.setWind(parseWind(reader));
-                break;
-            case WeatherData.weather_JSON:
-                if (reader.peek() == JsonToken.BEGIN_ARRAY)
-                    theWeather.setWeathers(parseWeathers(reader));
-                break;
-            default:
-                reader.skipValue();
-                break;
+                case WeatherData.wind_JSON:
+                    if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                        theWeather.setWind(parseWind(reader));
+                    break;
+                case WeatherData.weather_JSON:
+                    if (reader.peek() == JsonToken.BEGIN_ARRAY)
+                        theWeather.setWeathers(parseWeathers(reader));
+                    break;
+                default:
+                    reader.skipValue();
+                    break;
+            }
         }
 
         return theWeather;
@@ -141,7 +142,6 @@ public class WeatherDataJsonParser {
         reader.beginObject();
 
         Weather theWeather = new Weather();
-        outerloop:
         while(reader.hasNext())
         {
             String name = reader.nextName();

@@ -87,7 +87,7 @@ public class WeatherServiceBase
               + location);
 
         // TODO -- you fill in here.
-        // Try to get the results from the AcronymCache.
+        // Try to get the results from the WeatherCache.
         List<WeatherData> results =
                 GenericSingleton.instance(WeatherCache.class).get(location);
 
@@ -100,7 +100,7 @@ public class WeatherServiceBase
             return results;
         } else {
             Log.d(TAG,
-                    "Getting results from the Acronym Service for "
+                    "Getting results from the Weather Service for "
                             + location);
 
             // The results weren't already in the cache or were
