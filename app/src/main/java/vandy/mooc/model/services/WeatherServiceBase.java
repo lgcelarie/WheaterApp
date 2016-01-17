@@ -103,14 +103,11 @@ public class WeatherServiceBase
                     "Getting results from the Weather Service for "
                             + location);
 
-            // The results weren't already in the cache or were
-            // "stale", so obtain them from the Acronym Service.
+
             results = getResultsFromWeatherService(location);
 
             if (results != null)
-                // Store the results into the cache for up to
-                // DEFAULT_CACHE_TIMEOUT seconds based on the location
-                // and return the results.
+
                 GenericSingleton.instance(WeatherCache.class).put
                         (location,
                                 results,

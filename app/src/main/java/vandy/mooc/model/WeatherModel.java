@@ -191,17 +191,12 @@ public class WeatherModel
     public boolean getWeatherAsync(String location) {
         // TODO -- you fill in here.
 
-        // Get a reference to the AcronymRequest interface.
         final WeatherRequest weatherRequest =
                 mServiceConnAsync.getInterface();
 
         if (weatherRequest != null) {
             try {
-                // Invoke a one-way AIDL call that doesn't block the
-                // caller.  Results are returned via the sendResults()
-                // or sendError() methods of the AsyncResultsImpl
-                // callback object, which runs in a Thread from the
-                // Thread pool managed by the Binder framework.
+
                 weatherRequest.getCurrentWeather(location, mWeatherResults);
                 return true;
             } catch (RemoteException e) {
@@ -211,7 +206,7 @@ public class WeatherModel
             }
         } else
             Log.d(TAG,
-                    "acronymRequest was null.");
+                    "weatherRequest was null.");
         return false;
     }
 
@@ -226,8 +221,7 @@ public class WeatherModel
                     mServiceConnSync.getInterface();
 
             if (weatherCall != null) {
-                // Invoke a two-way AIDL call, which blocks the
-                // caller.
+
                 List<WeatherData> theWeathers = weatherCall.getCurrentWeather(location);
                 if(theWeathers != null)
                     return weatherCall.getCurrentWeather(location).get(0);

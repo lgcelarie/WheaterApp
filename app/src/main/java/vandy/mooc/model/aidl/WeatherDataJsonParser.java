@@ -70,7 +70,7 @@ public class WeatherDataJsonParser {
         throws IOException {
 
         // TODO -- you fill in here.
-        //reader.beginObject();
+
         WeatherData theWeather = new WeatherData();
         while(reader.hasNext()) {
             Log.e(TAG,reader.toString());
@@ -112,7 +112,7 @@ public class WeatherDataJsonParser {
                     break;
             }
         }
-        //reader.endObject();
+
         return theWeather;
     }
     
