@@ -225,10 +225,13 @@ public class WeatherModel
             final WeatherCall weatherCall =
                     mServiceConnSync.getInterface();
 
-            if (weatherCall != null)
+            if (weatherCall != null) {
                 // Invoke a two-way AIDL call, which blocks the
                 // caller.
-                return weatherCall.getCurrentWeather(location).get(0);
+                List<WeatherData> theWeathers = weatherCall.getCurrentWeather(location);
+                if(theWeathers != null)
+                    return weatherCall.getCurrentWeather(location).get(0);
+            }
             else
                 Log.d(TAG, "the WeatherCall was null.");
         } catch (RemoteException e) {

@@ -72,6 +72,12 @@ public class WeatherServiceSync
             public List<WeatherData> getCurrentWeather(String location)
                 throws RemoteException {
 
-                // TODO -- you fill in here.
+                List<WeatherData> returnList = getWeatherResults(location);
+                if(returnList != null)
+                    return returnList;
+                else
+                    return null;
+
+            }
         };
 }

@@ -25,7 +25,7 @@ public class WeatherServiceBase
     /**
      * Appid needed to access the service.  TODO -- fill in with your Appid.
      */
-    private final String mAppid = "";
+    private final String mAppid = "eccda9c1969270a60c675f8311c9ae5d";
 
     /**
      * URL to the Weather Service web service.

@@ -12,6 +12,7 @@ import vandy.mooc.model.aidl.WeatherData.Weather;
 import vandy.mooc.model.aidl.WeatherData.Wind;
 import android.util.JsonReader;
 import android.util.JsonToken;
+import android.util.Log;
 
 /**
  * Parses the Json weather data returned from the Weather Services API
@@ -38,7 +39,8 @@ public class WeatherDataJsonParser {
                              "UTF-8"))) {
             // Log.d(TAG, "Parsing the results returned as an array");
 
-            // Handle the array returned from the Acronym Service.
+            // Handle the array returned from the Weather Service.
+
             return parseJsonWeatherDataArray(reader);
         }
     }
@@ -50,14 +52,14 @@ public class WeatherDataJsonParser {
     public List<WeatherData> parseJsonWeatherDataArray(JsonReader reader)
         throws IOException {
         // TODO -- you fill in here.
-        List<WeatherData> weatherDatas = null;
-        reader.beginObject();
+        List<WeatherData> weatherDatas = new ArrayList<WeatherData>();
 
+        reader.beginObject();
         while (reader.hasNext()) {
             weatherDatas.add(parseJsonWeatherData(reader));
         }
-
         reader.endObject();
+
         return weatherDatas;
     }
 
@@ -68,9 +70,10 @@ public class WeatherDataJsonParser {
         throws IOException {
 
         // TODO -- you fill in here.
-
+        //reader.beginObject();
         WeatherData theWeather = new WeatherData();
         while(reader.hasNext()) {
+            Log.e(TAG,reader.toString());
             String name = reader.nextName();
             switch (name) {
                 case WeatherData.cod_JSON:
@@ -90,17 +93,14 @@ public class WeatherDataJsonParser {
                     break;
 
                 case WeatherData.sys_JSON:
-                    if (reader.peek() == JsonToken.BEGIN_ARRAY)
                         theWeather.setSys(parseSys(reader));
                     break;
 
                 case WeatherData.main_JSON:
-                    if (reader.peek() == JsonToken.BEGIN_ARRAY)
                         theWeather.setMain(parseMain(reader));
                     break;
 
                 case WeatherData.wind_JSON:
-                    if (reader.peek() == JsonToken.BEGIN_ARRAY)
                         theWeather.setWind(parseWind(reader));
                     break;
                 case WeatherData.weather_JSON:
@@ -112,7 +112,7 @@ public class WeatherDataJsonParser {
                     break;
             }
         }
-
+        //reader.endObject();
         return theWeather;
     }
     
@@ -121,7 +121,7 @@ public class WeatherDataJsonParser {
      */
     public List<Weather> parseWeathers(JsonReader reader) throws IOException {
         // TODO -- you fill in here.
-        List<Weather> weatherList = null;
+        List<Weather> weatherList = new ArrayList<Weather>();
 
         reader.beginArray();
 
